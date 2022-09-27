@@ -27,12 +27,6 @@ export class LoginComponent implements OnInit {
 
     if (val.username && val.password) {
       this.authService.login(val.username, val.password)
-        .subscribe(
-          () => {
-            console.log("User is logged in");
-            this.router.navigateByUrl('/');
-          }
-        );
     }
   }
 
