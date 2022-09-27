@@ -1,6 +1,7 @@
 package de.davidemarcoli.backend.controllers;
 
 import de.davidemarcoli.backend.generic.CrudController;
+import de.davidemarcoli.backend.generic.CrudControllerClass;
 import de.davidemarcoli.backend.models.Category;
 import de.davidemarcoli.backend.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
+@CrudControllerClass
 public class CategoryController implements CrudController<Category, Integer> {
 
     @Autowired
