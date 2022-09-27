@@ -11,6 +11,7 @@ import {AuthService} from "../services/auth/auth.service";
 export class LoginComponent implements OnInit {
 
   form: FormGroup;
+  passwordVisible = false;
 
   constructor(private fb:FormBuilder,
               private authService: AuthService,
@@ -26,9 +27,10 @@ export class LoginComponent implements OnInit {
     const val = this.form.value;
 
     if (val.username && val.password) {
-      const data = await this.authService.login(val.username, val.password)
-      console.log("Data", data)
-      this.router.navigateByUrl("")
+      this.authService.login(val.username, val.password).then(data => {
+        console.log("Data", data)
+        this.router.navigateByUrl("home")
+      })
     }
   }
 

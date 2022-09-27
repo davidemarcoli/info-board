@@ -10,8 +10,11 @@ export class AuthService {
   constructor(private http: HttpClient) {
   }
 
-  login(username:string, password:string ): any {
-    return this.http.post<any>('http://localhost:8081/api/auth/signin', {username: username, password: password}).subscribe(value => {
+  async login(username: string, password: string): Promise<any> {
+    return await this.http.post<any>('http://localhost:8081/api/auth/signin', {
+      username: username,
+      password: password
+    }).toPromise().then(value => {
       this.setSession(value);
       return value;
     })
@@ -31,6 +34,7 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem("currentUser");
+    location.reload()
   }
 
   public isLoggedIn() {
