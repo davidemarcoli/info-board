@@ -22,11 +22,13 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  login() {
+  async login() {
     const val = this.form.value;
 
     if (val.username && val.password) {
-      this.authService.login(val.username, val.password)
+      const data = await this.authService.login(val.username, val.password)
+      console.log("Data", data)
+      this.router.navigateByUrl("")
     }
   }
 
