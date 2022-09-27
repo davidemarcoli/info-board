@@ -11,28 +11,26 @@ import {AuthService} from "../services/auth/auth.service";
 export class LoginComponent implements OnInit {
 
   form: FormGroup;
+  passwordVisible = false;
 
   constructor(private fb:FormBuilder,
               private authService: AuthService,
               private router: Router) {
 
     this.form = this.fb.group({
-      username: ['',Validators.required],
-      password: ['',Validators.required]
+      username: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
+      password: ['', [Validators.required, Validators.minLength(8)]]
     });
   }
 
-  login() {
+  async login() {
     const val = this.form.value;
 
     if (val.username && val.password) {
-      this.authService.login(val.username, val.password)
-        .subscribe(
-          () => {
-            console.log("User is logged in");
-            this.router.navigateByUrl('/');
-          }
-        );
+      this.authService.login(val.username, val.password).then(data => {
+        console.log("Data", data)
+        this.router.navigateByUrl("home")
+      })
     }
   }
 
