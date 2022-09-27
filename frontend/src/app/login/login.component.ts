@@ -18,8 +18,8 @@ export class LoginComponent implements OnInit {
               private router: Router) {
 
     this.form = this.fb.group({
-      username: ['',Validators.required],
-      password: ['',Validators.required]
+      username: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
+      password: ['', [Validators.required, Validators.minLength(8)]]
     });
   }
 
