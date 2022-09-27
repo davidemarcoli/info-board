@@ -70,6 +70,9 @@ public class AuthController {
 
   @PostMapping("/signup")
   public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
+
+    System.out.println("New Login Request with username " + signUpRequest.getUsername());
+
     if (userRepository.existsByUsername(signUpRequest.getUsername())) {
       return ResponseEntity
           .badRequest()

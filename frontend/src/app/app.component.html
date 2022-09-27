@@ -1,6 +1,7 @@
-<mat-toolbar>
-  <span>My Application</span>
+<mat-toolbar *ngIf="authService.isLoggedIn()">
+  <span>Info Board</span>
   <span class="example-spacer"></span>
+  <p style="margin: 0">{{authService.getUsername()}}</p>
   <button (click)="authService.logout()" mat-icon-button class="example-icon logout-icon" aria-label="button with lgout icon">
     <mat-icon>logout</mat-icon>
   </button>
