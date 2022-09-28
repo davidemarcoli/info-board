@@ -1,5 +1,8 @@
-<div style="text-align: center">
-  <form [formGroup]="form">
+<div style="text-align: center" class="centered">
+  <div (click)="backToLogin()" style="z-index: 1; cursor: pointer">
+    <mat-icon aria-hidden="false" aria-label="Back to Login" style="position: absolute; top: 10px; left: 10px; font-size: 2em">arrow_back</mat-icon>
+  </div>
+<form [formGroup]="form">
     <br>
     <mat-form-field appearance="fill">
       <mat-label>Email</mat-label>
@@ -22,6 +25,6 @@
       <mat-hint>Minimum <strong>8</strong> characters</mat-hint>
     </mat-form-field>
     <br>
-    <button (click)="login()" mat-raised-button>Signup</button>
+    <button (click)="signup()" mat-raised-button>Signup</button>
   </form>
 </div>

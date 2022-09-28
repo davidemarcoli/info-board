@@ -1,14 +1,7 @@
 mat-form-field {
-  width: Calc(20vw);
+  width: 20vw;
 }
 
-.centered {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  top:0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  position: absolute;
+mat-form-field:not(:first-child) {
+  margin-top: 1em;
 }

@@ -26,7 +26,7 @@ export class SignupComponent implements OnInit {
     });
   }
 
-  async login() {
+  async signup() {
     const val = this.form.value;
 
     if (val.username && val.password) {
@@ -44,6 +44,10 @@ export class SignupComponent implements OnInit {
           });
         })
     }
+  }
+
+  backToLogin() {
+    this.router.navigateByUrl("login")
   }
 
   ngOnInit(): void {

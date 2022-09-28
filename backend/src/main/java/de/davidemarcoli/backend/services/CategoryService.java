@@ -33,8 +33,8 @@ public class CategoryService implements CrudService<Category, Integer> {
     }
 
     @Override
-    public void delete(Category category) {
-        categoryRepository.delete(category);
+    public void deleteById(Integer id) {
+        categoryRepository.deleteById(id);
     }
 
     @Override

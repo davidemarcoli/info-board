@@ -8,7 +8,7 @@ import java.util.List;
 public interface CrudService<T, D> {
     T save(T t);
     T update(T t);
-    void delete(T t);
+    void deleteById(D id);
     T findById(D id);
 
     Category findById(Integer id);

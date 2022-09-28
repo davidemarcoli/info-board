@@ -22,14 +22,15 @@ export class AuthService {
   }
 
   async signup(email: string, username: string, password: string): Promise<any> {
-    return await this.http.post<any>('http://localhost:8081/api/auth/signup', {
+    return this.http.post<any>('http://localhost:8081/api/auth/signup', {
       email: email,
       username: username,
       password: password
-    }).toPromise().then(value => {
+    }).subscribe(value => {
+      console.log("Signup Value", value)
       this.setSession(value);
       return value;
-    })
+    });
   }
 
   private setSession(authResult: any) {

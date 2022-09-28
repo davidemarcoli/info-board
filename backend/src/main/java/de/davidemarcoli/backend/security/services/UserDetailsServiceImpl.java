@@ -26,6 +26,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
     private PasswordEncoder encoder;
 
+
+
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -40,9 +42,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     }
 
     public void createDefaultUsers() {
-        final Role userRole = roleRepository.findByName(ERole.ROLE_USER).get();
-        final Role moderatorRole = roleRepository.findByName(ERole.ROLE_MODERATOR).get();
-        final Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN).get();
+        final Role userRole = roleRepository.findByName(ERole.ROLE_USER).orElseThrow(() -> new RuntimeException("Error: Role USER is not found."));
+        final Role moderatorRole = roleRepository.findByName(ERole.ROLE_MODERATOR).orElseThrow(() -> new RuntimeException("Error: Role MODERATOR is not found."));
+        final Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN).orElseThrow(() -> new RuntimeException("Error: Role ADMIN is not found."));
 
         User user = new User();
         user.setUsername("user");

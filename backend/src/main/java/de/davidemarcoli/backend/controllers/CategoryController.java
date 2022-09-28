@@ -1,16 +1,15 @@
 package de.davidemarcoli.backend.controllers;
 
 import de.davidemarcoli.backend.generic.CrudController;
-import de.davidemarcoli.backend.generic.CrudControllerClass;
 import de.davidemarcoli.backend.models.Category;
 import de.davidemarcoli.backend.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@CrudControllerClass
 public class CategoryController implements CrudController<Category, Integer> {
 
     @Autowired
@@ -18,27 +17,31 @@ public class CategoryController implements CrudController<Category, Integer> {
 
 
     @Override
-    public Category create(Category category) {
-        return null;
+    @PostMapping("/")
+    public ResponseEntity<Category> create(@RequestBody Category category) {
+        return ResponseEntity.ok(categoryService.save(category));
     }
 
     @Override
-    public Category update(Category category) {
-        return null;
+    @PutMapping("/")
+    public ResponseEntity<Category> update(@RequestBody Category category) {
+        return ResponseEntity.ok(categoryService.update(category));
     }
 
     @Override
-    public Category delete(Category category) {
-        return null;
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteById(@PathVariable Integer id) {
+        categoryService.deleteById(id);
+        return ResponseEntity.ok().build();
     }
 
     @Override
-    public Category findById(Integer id) {
-        return null;
+    public ResponseEntity<Category> findById(Integer id) {
+        return ResponseEntity.ok(categoryService.findById(id));
     }
 
     @Override
-    public List<Category> findAll() {
-        return null;
+    public ResponseEntity<List<Category>> findAll() {
+        return ResponseEntity.ok(categoryService.findAll());
     }
 }
