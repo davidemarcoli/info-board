@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {PostService} from "../../../services/post/post.service";
 import {Post} from "../../../models/post";
 import {Router} from "@angular/router";
+import * as moment from "moment";
 
 @Component({
   selector: 'app-list-posts',
@@ -20,6 +21,10 @@ export class ListPostsComponent implements OnInit {
 
   navigateToPost(id: number) {
     this.router.navigate(['/post/view'], {queryParams: {id: id}});
+  }
+
+  getRelativeDate(date: Date) {
+    return moment(date).fromNow();
   }
 
   ngOnInit(): void {
