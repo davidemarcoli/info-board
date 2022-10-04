@@ -7,11 +7,11 @@ import java.util.List;
 
 public interface CrudService<T, D> {
     T save(T t);
-    T update(T t);
+    T update(D id, T t);
     void deleteById(D id);
     T findById(D id);
 
-    Category findById(Integer id);
+    T findById(Integer id);
 
     List<T> findAll();
 }

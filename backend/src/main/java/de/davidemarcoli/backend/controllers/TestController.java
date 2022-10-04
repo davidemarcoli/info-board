@@ -1,6 +1,5 @@
 package de.davidemarcoli.backend.controllers;
 
-import de.davidemarcoli.backend.generic.annotations.Traceable;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +13,6 @@ import javax.annotation.security.PermitAll;
 @RequestMapping("/api/test")
 public class TestController {
   @GetMapping("/all")
-  @Traceable
   public String allAccess() {
     return "Public Content.";
   }
