@@ -1,6 +1,6 @@
 <mat-toolbar *ngIf="authService.isLoggedIn()">
-  <span>Info Board</span>
-  <a mat-button routerLink="/info-board">Info Board</a>
+  <span routerLink="/info-board" style="cursor: pointer">Info Board</span>
+<!--  <a mat-button routerLink="/info-board">Info Board</a>-->
   <button mat-icon-button [matMenuTriggerFor]="infoBoardMenu">
     <mat-icon>more_vert</mat-icon>
   </button>

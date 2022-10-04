@@ -25,6 +25,11 @@ import {ErrorInterceptor} from "./helper/error.interceptor";
 import { CreatePostComponent } from './forms/post/create-post/create-post.component';
 import { ListPostsComponent } from './forms/post/list-posts/list-posts.component';
 import {CKEditorModule} from "@ckeditor/ckeditor5-angular";
+import { DeleteCategoryComponent } from './forms/category/delete-category/delete-category.component';
+import { UpdateCategoryComponent } from './forms/category/update-category/update-category.component';
+import {MatCardModule} from "@angular/material/card";
+import {TruncatePipe} from "./truncate.pipe";
+import { ViewPostComponent } from './forms/post/view-post/view-post.component';
 
 @NgModule({
   declarations: [
@@ -36,25 +41,30 @@ import {CKEditorModule} from "@ckeditor/ckeditor5-angular";
     ListCategoriesComponent,
     CreatePostComponent,
     ListPostsComponent,
+    DeleteCategoryComponent,
+    UpdateCategoryComponent,
+    TruncatePipe,
+    ViewPostComponent,
   ],
-  imports: [
-    BrowserModule,
-    ReactiveFormsModule,
-    AppRoutingModule,
-    BrowserModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatButtonModule,
-    MatInputModule,
-    MatToolbarModule,
-    MatSnackBarModule,
-    MatOptionModule,
-    MatSelectModule,
-    MatMenuModule,
-    CKEditorModule
-  ],
+    imports: [
+        BrowserModule,
+        ReactiveFormsModule,
+        AppRoutingModule,
+        BrowserModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        MatFormFieldModule,
+        MatIconModule,
+        MatButtonModule,
+        MatInputModule,
+        MatToolbarModule,
+        MatSnackBarModule,
+        MatOptionModule,
+        MatSelectModule,
+        MatMenuModule,
+        CKEditorModule,
+        MatCardModule
+    ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }

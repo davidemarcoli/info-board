@@ -36,7 +36,7 @@ public class PostController implements CrudController<Post, Integer> {
 
     @Override
     @GetMapping("/{id}")
-    public ResponseEntity<Post> findById(Integer id) {
+    public ResponseEntity<Post> findById(@PathVariable Integer id) {
         return ResponseEntity.ok(postService.findById(id));
     }
 

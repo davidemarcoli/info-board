@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RequestMapping("/api/categories")
 @RestController
+@RequestMapping("/api/categories")
 public class CategoryController implements CrudController<Category, Integer> {
 
     @Autowired

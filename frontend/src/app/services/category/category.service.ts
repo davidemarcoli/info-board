@@ -28,8 +28,8 @@ export class CategoryService {
     return this.http.put<Category>(AppSettings.API_ENDPOINT + 'categories/' + category.id, category);
   }
 
-  public deleteCategory(id: number): Observable<Category> {
-    return this.http.delete<Category>(AppSettings.API_ENDPOINT + 'categories/' + id);
+  public deleteCategory(id: number): Observable<void> {
+    return this.http.delete<void>(AppSettings.API_ENDPOINT + 'categories/' + id);
   }
 
 }

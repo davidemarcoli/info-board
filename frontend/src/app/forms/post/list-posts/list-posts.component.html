@@ -1,1 +1,7 @@
-<p>list-posts works!</p>
+<div class="container">
+  <mat-card class="items" (click)="navigateToPost(post.id)" *ngFor="let post of posts">
+    <h2>{{post.title | truncate:20}} </h2>
+    <p>{{post.content | truncate:100}} </p>
+    <p class="category-pill" *ngFor="let category of post.categories">{{category.name}}</p>
+  </mat-card>
+</div>

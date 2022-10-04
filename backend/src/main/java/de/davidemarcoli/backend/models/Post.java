@@ -10,6 +10,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -33,9 +34,10 @@ public class Post {
     @JoinColumn(name = "author_id", updatable = false, nullable = false)
     private User author;
 
+    // can't delete category if it's used in a post
     @ManyToMany
     @JoinTable(
-            name = "post_tag",
+            name = "post_category",
             joinColumns = @JoinColumn(name = "post_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id")
     )

@@ -7,7 +7,7 @@ import {PostService} from "../../../services/post/post.service";
 import {Post} from "../../../models/post";
 
 // @ts-ignore
-import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import * as CustomEditor from '@leo1305/ckeditor5-build-custom';
 
 @Component({
   selector: 'app-create-port',
@@ -16,7 +16,7 @@ import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 })
 export class CreatePostComponent implements OnInit {
 
-  public Editor = ClassicEditor;
+  public Editor = CustomEditor;
 
   // @ts-ignore
   form: FormGroup;
