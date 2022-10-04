@@ -5,10 +5,7 @@ import de.davidemarcoli.backend.models.Post;
 import de.davidemarcoli.backend.services.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,7 +18,7 @@ public class PostController implements CrudController<Post, Integer> {
 
     @Override
     @PostMapping("/")
-    public ResponseEntity<Post> create(Post post) {
+    public ResponseEntity<Post> create(@RequestBody Post post) {
         return ResponseEntity.ok(postService.save(post));
     }
 
@@ -32,16 +29,19 @@ public class PostController implements CrudController<Post, Integer> {
     }
 
     @Override
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteById(Integer id) {
         return ResponseEntity.ok().build();
     }
 
     @Override
+    @GetMapping("/{id}")
     public ResponseEntity<Post> findById(Integer id) {
         return ResponseEntity.ok(postService.findById(id));
     }
 
     @Override
+    @GetMapping("/")
     public ResponseEntity<List<Post>> findAll() {
         return ResponseEntity.ok(postService.findAll());
     }

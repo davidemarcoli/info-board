@@ -5,17 +5,17 @@ export class Post {
   id: number;
   title: string;
   content: string;
-  category: Category[];
+  categories: Category[];
   author: User;
   createdAt: Date;
   updatedAt: Date;
 
 
-  constructor(id: number, title: string, content: string, category: Category[], author: User, createdAt: Date, updatedAt: Date) {
+  constructor(id: number, title: string, content: string, categories: Category[], author: User, createdAt: Date, updatedAt: Date) {
     this.id = id;
     this.title = title;
     this.content = content;
-    this.category = category;
+    this.categories = categories;
     this.author = author;
     this.createdAt = createdAt;
     this.updatedAt = updatedAt;
