@@ -22,11 +22,17 @@
   min-width: 250px;
 }
 
-.category-pill {
-  background-color: #f5f5f5;
-  color: #000;
-  padding: 5px;
-  border-radius: 5px;
-  font-size: 0.8rem;
-  width: fit-content;
+.category-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  /*align-items: center;*/
+  /*justify-content: center;*/
+  gap: 10px;
 }
+
+/*app-category-pill {*/
+/*  display: flex;*/
+/*  flex-direction: row;*/
+/*  flex-wrap: wrap;*/
+/*}*/

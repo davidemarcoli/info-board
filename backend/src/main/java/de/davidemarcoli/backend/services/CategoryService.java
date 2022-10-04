@@ -22,6 +22,8 @@ public class CategoryService implements CrudService<Category, Integer> {
     public Category save(Category category) {
         if (categoryRepository.findByName(category.getName()).isPresent()) {
             throw new EntityAlreadyExistsException("Category " + category.getName() + " already exists");
+        } else if (categoryRepository.existsByColor(category.getColor())) {
+            throw new EntityAlreadyExistsException("Category with color " + category.getColor() + " already exists");
         }
         return categoryRepository.save(category);
     }

@@ -9,4 +9,7 @@ import java.util.Optional;
 @Repository
 public interface CategoryRepository extends CrudRepository<Category, Integer> {
     Optional<Category> findByName(String name);
+
+    boolean existsByColor(String color);
+
 }

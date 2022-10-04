@@ -14,12 +14,14 @@ export class CreateCategoryComponent implements OnInit {
   // @ts-ignore
   form: FormGroup;
 
+  color = '#f5f5f5';
+
   constructor(private categoryService: CategoryService, private alertService: AlertService) {
   }
 
   ngOnInit(): void {
     this.form = new FormGroup({
-      name: new FormControl('', Validators.required)
+      name: new FormControl('', Validators.required),
     });
   }
 
@@ -27,12 +29,16 @@ export class CreateCategoryComponent implements OnInit {
     return this.form.get('name');
   }
 
+  getPreviewCategory() {
+    return new Category(this.form.value.name, this.color);
+  }
+
   onSubmit(event: any) {
     console.log(event)
     console.log(this.form)
     console.log(this.form.value.name)
 
-    this.categoryService.createCategory(new Category(this.form.value.name)).toPromise()
+    this.categoryService.createCategory(new Category(this.form.value.name, this.color)).toPromise()
       .then(value => {
         console.log(value)
         this.alertService.success('Category created successfully');

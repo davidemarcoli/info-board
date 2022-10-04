@@ -11,6 +11,9 @@
 <!--    <p>{{record.post.content | truncate:100}} </p>-->
     <p [innerHTML]="record.post.content | truncate:100"></p>
     <p>{{getRelativeDate(record.post.createdAt)}} </p>
-    <p class="category-pill" *ngFor="let category of record.post.categories">{{category.name}}</p>
+    <div class="category-container">
+      <app-category-pill *ngFor="let category of record.post.categories" [category]="category"></app-category-pill>
+    </div>
+<!--    <p class="category-pill" *ngFor="let category of record.post.categories">{{category.name}}</p>-->
   </mat-card>
 </div>

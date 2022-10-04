@@ -46,7 +46,7 @@ export class DeleteCategoryComponent implements OnInit {
       // this.router.navigateByUrl('category/delete', {skipLocationChange: true})
     })
       .catch(reason => {
-        this.alertService.error(reason.error);
+        this.alertService.error(reason.error.message);
       })
   }
 

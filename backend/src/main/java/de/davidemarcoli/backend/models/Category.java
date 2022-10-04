@@ -20,6 +20,9 @@ public class Category {
     @Column(unique = true)
     private String name;
 
+    @Column(unique = true)
+    private String color;
+
     @JsonIgnore
     @ManyToMany
     @JoinTable(
