@@ -6,12 +6,17 @@ import {Category} from "../../../models/category";
 import {PostService} from "../../../services/post/post.service";
 import {Post} from "../../../models/post";
 
+// @ts-ignore
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+
 @Component({
   selector: 'app-create-port',
   templateUrl: './create-post.component.html',
   styleUrls: ['./create-post.component.css']
 })
 export class CreatePostComponent implements OnInit {
+
+  public Editor = ClassicEditor;
 
   // @ts-ignore
   form: FormGroup;

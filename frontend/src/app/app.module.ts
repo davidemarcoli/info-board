@@ -24,6 +24,7 @@ import {MatMenuModule} from "@angular/material/menu";
 import {ErrorInterceptor} from "./helper/error.interceptor";
 import { CreatePostComponent } from './forms/post/create-post/create-post.component';
 import { ListPostsComponent } from './forms/post/list-posts/list-posts.component';
+import {CKEditorModule} from "@ckeditor/ckeditor5-angular";
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { ListPostsComponent } from './forms/post/list-posts/list-posts.component
     MatSnackBarModule,
     MatOptionModule,
     MatSelectModule,
-    MatMenuModule
+    MatMenuModule,
+    CKEditorModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

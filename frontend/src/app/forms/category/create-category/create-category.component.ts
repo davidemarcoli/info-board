@@ -32,10 +32,11 @@ export class CreateCategoryComponent implements OnInit {
     console.log(this.form)
     console.log(this.form.value.name)
 
-    this.categoryService.createCategory(new Category(this.form.value.name)).toPromise().then(value => {
-      console.log(value)
-      this.alertService.success('Category created successfully');
-    })
+    this.categoryService.createCategory(new Category(this.form.value.name)).toPromise()
+      .then(value => {
+        console.log(value)
+        this.alertService.success('Category created successfully');
+      })
       .catch(reason => {
         console.log(reason)
         this.alertService.error(reason.error.message);
