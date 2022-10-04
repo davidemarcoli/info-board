@@ -13,3 +13,27 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   right: 0;
   position: absolute;
 }
+
+.success-snackbar {
+  background-color: #4caf50;
+  color: white;
+}
+
+.error-snackbar {
+  background-color: #f44336;
+  color: white;
+}
+
+.warning-snackbar {
+  background-color: #ff9800;
+  color: white;
+}
+
+.info-snackbar {
+  background-color: #2196f3;
+  color: white;
+}
+
+.mat-simple-snackbar-action {
+  color: white;
+}

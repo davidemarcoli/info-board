@@ -25,7 +25,8 @@ public class CategoryService implements CrudService<Category, Integer> {
     }
 
     @Override
-    public Category update(Category category) {
+    public Category update(Integer id, Category category) {
+        category.setId(id);
        if (categoryRepository.findById(category.getId()).isPresent()) {
            return categoryRepository.save(category);
        }

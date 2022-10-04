@@ -1,0 +1,18 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit($event)">
+  <h1>Create New Category</h1>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Name</mat-label>
+    <input matInput formControlName="name">
+  </mat-form-field>
+<!--  <mat-form-field appearance="fill">-->
+<!--    <mat-label>Select</mat-label>-->
+<!--    <mat-select>-->
+<!--      <mat-option value="one">First option</mat-option>-->
+<!--      <mat-option value="two">Second option</mat-option>-->
+<!--    </mat-select>-->
+<!--  </mat-form-field>-->
+
+<!--  submit-->
+  <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Submit</button>
+</form>

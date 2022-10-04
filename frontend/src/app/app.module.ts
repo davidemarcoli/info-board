@@ -16,6 +16,14 @@ import {MatInputModule} from "@angular/material/input";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import { SignupComponent } from './login/signup/signup.component';
 import {MatSnackBarModule} from "@angular/material/snack-bar";
+import { CreateCategoryComponent } from './forms/category/create-category/create-category.component';
+import { ListCategoriesComponent } from './forms/category/list-categories/list-categories.component';
+import {MatOptionModule} from "@angular/material/core";
+import {MatSelectModule} from "@angular/material/select";
+import {MatMenuModule} from "@angular/material/menu";
+import {ErrorInterceptor} from "./helper/error.interceptor";
+import { CreatePostComponent } from './forms/post/create-post/create-post.component';
+import { ListPostsComponent } from './forms/post/list-posts/list-posts.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +31,10 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
     LoginComponent,
     HomeComponent,
     SignupComponent,
+    CreateCategoryComponent,
+    ListCategoriesComponent,
+    CreatePostComponent,
+    ListPostsComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,10 +48,14 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
     MatButtonModule,
     MatInputModule,
     MatToolbarModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatOptionModule,
+    MatSelectModule,
+    MatMenuModule
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
   ],
   bootstrap: [AppComponent],
 })

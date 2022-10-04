@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@RequestMapping("/api/categories")
 @RestController
 public class CategoryController implements CrudController<Category, Integer> {
 
@@ -23,9 +24,9 @@ public class CategoryController implements CrudController<Category, Integer> {
     }
 
     @Override
-    @PutMapping("/")
-    public ResponseEntity<Category> update(@RequestBody Category category) {
-        return ResponseEntity.ok(categoryService.update(category));
+    @PutMapping("/{id}")
+    public ResponseEntity<Category> update(@PathVariable Integer id, @RequestBody Category category) {
+        return ResponseEntity.ok(categoryService.update(id, category));
     }
 
     @Override
@@ -36,11 +37,13 @@ public class CategoryController implements CrudController<Category, Integer> {
     }
 
     @Override
-    public ResponseEntity<Category> findById(Integer id) {
+    @GetMapping("/{id}")
+    public ResponseEntity<Category> findById(@PathVariable Integer id) {
         return ResponseEntity.ok(categoryService.findById(id));
     }
 
     @Override
+    @GetMapping("/")
     public ResponseEntity<List<Category>> findAll() {
         return ResponseEntity.ok(categoryService.findAll());
     }

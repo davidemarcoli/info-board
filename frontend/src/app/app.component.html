@@ -1,5 +1,22 @@
 <mat-toolbar *ngIf="authService.isLoggedIn()">
   <span>Info Board</span>
+  <a mat-button routerLink="/info-board">Info Board</a>
+  <button mat-icon-button [matMenuTriggerFor]="infoBoardMenu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #infoBoardMenu="matMenu">
+    <button mat-menu-item routerLink="info-board/create">Add Info Board</button>
+<!--    <button mat-menu-item>Edit Info Board</button>-->
+<!--    <button mat-menu-item>Delete Info Board</button>-->
+  </mat-menu>
+  <button mat-icon-button [matMenuTriggerFor]="categoryMenu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #categoryMenu="matMenu">
+    <button mat-menu-item routerLink="category/create">Add Category</button>
+    <button mat-menu-item routerLink="category/edit">Edit Category</button>
+    <button mat-menu-item routerLink="category/delete">Delete Category</button>
+  </mat-menu>
   <span class="example-spacer"></span>
   <p style="margin: 0">{{authService.getUsername()}}</p>
   <button (click)="authService.logout()" mat-icon-button class="example-icon logout-icon" aria-label="button with lgout icon">
