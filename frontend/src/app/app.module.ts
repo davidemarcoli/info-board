@@ -32,6 +32,7 @@ import {TruncatePipe} from "./truncate.pipe";
 import {ViewPostComponent} from './forms/post/view-post/view-post.component';
 import {ColorPickerModule} from "ngx-color-picker";
 import { CategoryPillComponent } from './components/category-pill/category-pill.component';
+import { EditPostComponent } from './forms/post/edit-post/edit-post.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { CategoryPillComponent } from './components/category-pill/category-pill.
     TruncatePipe,
     ViewPostComponent,
     CategoryPillComponent,
+    EditPostComponent,
   ],
   imports: [
     BrowserModule,

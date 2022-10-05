@@ -43,6 +43,7 @@ export class AuthService {
     const userObj = {
       token: authResult.accessToken,
       username: authResult.username,
+      roles: decoded.roles,
       expiresAt: expiresAt.valueOf()
     }
 
@@ -84,5 +85,11 @@ export class AuthService {
   getUsername() {
     const userObj = JSON.parse(localStorage.getItem('currentUser')!);
     return userObj.username;
+  }
+
+  getRoles() {
+    const userObj = JSON.parse(localStorage.getItem('currentUser')!);
+    // console.log("User Obj", userObj)
+    return userObj.roles.map((role: any) => role.authority);
   }
 }

@@ -11,6 +11,8 @@ import {ListPostsComponent} from "./forms/post/list-posts/list-posts.component";
 import {UpdateCategoryComponent} from "./forms/category/update-category/update-category.component";
 import {DeleteCategoryComponent} from "./forms/category/delete-category/delete-category.component";
 import {ViewPostComponent} from "./forms/post/view-post/view-post.component";
+import {EditPostComponent} from "./forms/post/edit-post/edit-post.component";
+import {AdminAuthGuardService} from "./services/admin-auth-guard/admin-auth-guard.service";
 
 const routes: Routes = [
   { path: 'home', component: ListPostsComponent, canActivate: [AuthGuardService] },
@@ -18,14 +20,15 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   {path: 'post', children: [
       {path: 'create', component: CreatePostComponent, canActivate: [AuthGuardService]},
+      { path: 'edit', component: EditPostComponent, canActivate: [AuthGuardService] },
       {path: 'list', component: ListPostsComponent, canActivate: [AuthGuardService]},
       {path: 'view', component: ViewPostComponent, canActivate: [AuthGuardService]}
     ]},
-  { path: 'category', children: [
-      { path: 'create', component: CreateCategoryComponent, canActivate: [AuthGuardService] },
-      { path: 'update', component: UpdateCategoryComponent, canActivate: [AuthGuardService] },
-      { path: 'delete', component: DeleteCategoryComponent, canActivate: [AuthGuardService] },
-      { path: 'list', component: ListCategoriesComponent, canActivate: [AuthGuardService] },
+  { path: 'category', canActivate: [AdminAuthGuardService], children: [
+      { path: 'create', component: CreateCategoryComponent },
+      { path: 'edit', component: UpdateCategoryComponent },
+      { path: 'delete', component: DeleteCategoryComponent },
+      { path: 'list', component: ListCategoriesComponent },
     ]},
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', redirectTo: 'home' },
