@@ -8,6 +8,7 @@ import {Post} from "../../../models/post";
 
 // @ts-ignore
 import * as CustomEditor from '@leo1305/ckeditor5-build-custom';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-create-port',
@@ -23,7 +24,7 @@ export class CreatePostComponent implements OnInit {
 
   categoryList: Category[] = [];
 
-  constructor(private categoryService: CategoryService, private postService: PostService, private alertService: AlertService) {
+  constructor(private categoryService: CategoryService, private postService: PostService, private alertService: AlertService, private router: Router) {
     this.categoryService.getCategories().toPromise().then(value => {
       this.categoryList = value || [];
     })
@@ -68,14 +69,13 @@ export class CreatePostComponent implements OnInit {
     let post = {
       title: this.form.value.title,
       content: this.form.value.content,
-      categories: this.form.value.categories.map((id: any) => {
-        return {id: id} as Category;
-      })
+      categories: this.categoryList.filter(value => this.form.value.categories.includes(value.id.toString()))
     } as Post;
 
     this.postService.createPost(post).toPromise().then(value => {
       console.log(value)
       this.alertService.success('Post created successfully');
+      this.router.navigate(['/']);
     })
       .catch(reason => {
         console.log(reason)

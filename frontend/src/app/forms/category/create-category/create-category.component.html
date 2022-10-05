@@ -8,7 +8,7 @@
 
   <mat-form-field appearance="fill">
     <mat-label>Color</mat-label>
-    <input matInput [(colorPicker)]="color"/>
+    <input matInput [value]="color" [(colorPicker)]="color"/>
   </mat-form-field>
 
   <app-category-pill [category]="getPreviewCategory()"></app-category-pill>

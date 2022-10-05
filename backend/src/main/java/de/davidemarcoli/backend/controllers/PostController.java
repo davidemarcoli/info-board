@@ -24,13 +24,14 @@ public class PostController implements CrudController<Post, Integer> {
 
     @Override
     @PutMapping("/{id}")
-    public ResponseEntity<Post> update(Integer id, Post post) {
+    public ResponseEntity<Post> update(@PathVariable Integer id, @RequestBody Post post) {
         return ResponseEntity.ok(postService.update(id, post));
     }
 
     @Override
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteById(Integer id) {
+    public ResponseEntity<Void> deleteById(@PathVariable Integer id) {
+        postService.deleteById(id);
         return ResponseEntity.ok().build();
     }
 

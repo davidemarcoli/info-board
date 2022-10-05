@@ -24,12 +24,7 @@ public class Category {
     private String color;
 
     @JsonIgnore
-    @ManyToMany
-    @JoinTable(
-            name = "post_category",
-            joinColumns = @JoinColumn(name = "category_id"),
-            inverseJoinColumns = @JoinColumn(name = "post_id")
-    )
+    @ManyToMany(mappedBy = "categories")
     private Set<Post> posts;
 
 }

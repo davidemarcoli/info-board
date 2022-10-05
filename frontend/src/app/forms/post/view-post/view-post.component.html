@@ -1,16 +1,36 @@
-<div id="details">
-  List all the post details here
-  <table>
-    <tr>
-      <td>Author</td>
-      <td>{{post.author.username}}</td>
-    </tr>
-    <tr>
-      <td>Created At</td>
-      <td>{{post.createdAt}} ({{getRelativeDate(post.createdAt)}})</td>
-  </table>
-</div>
-<div id="container">
-  <h1 id="title">{{post.title}}</h1>
-  <div [innerHTML]="getPostContent()"></div>
+<div *ngIf="post.id !== 0">
+  <div id="details">
+
+    <h2>Details</h2>
+    <table class="metadata">
+      <tr>
+        <td>Author</td>
+        <td>{{post.author.username}}</td>
+      </tr>
+      <tr>
+        <td>Created At</td>
+        <td>{{getFormattedDate(post.createdAt)}} ({{getRelativeDate(post.createdAt)}})</td>
+      </tr>
+      <tr>
+        <td>Updated At</td>
+        <td>{{getFormattedDate(post.updatedAt)}} ({{getRelativeDate(post.updatedAt)}})</td>
+      </tr>
+      <tr>
+        <td>Categories</td>
+        <td id="categories">
+          {{getCategoryNames()}}
+        </td>
+      </tr>
+    </table>
+
+<!--    <button class="btn btn-primary" (click)="editPost()">Edit</button>-->
+<!--    <button class="btn btn-danger" (click)="deletePost()">Delete</button>-->
+    <button mat-raised-button color="primary" (click)="editPost()" *ngIf="canModify()">Edit</button>
+    <button mat-raised-button color="warn" (click)="deletePost()" *ngIf="canModify()">Delete</button>
+
+  </div>
+  <div id="content">
+    <h1 id="title">{{post.title}}</h1>
+    <div [innerHTML]="getPostContent()"></div>
+  </div>
 </div>

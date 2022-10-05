@@ -28,7 +28,7 @@ export class PostService {
     return this.http.put<Post>(AppSettings.API_ENDPOINT + 'posts/' + post.id, post);
   }
 
-  public deletePost(id: number): Observable<Post> {
-    return this.http.delete<Post>(AppSettings.API_ENDPOINT + 'posts/' + id);
+  public deletePost(id: number): Observable<void> {
+    return this.http.delete<void>(AppSettings.API_ENDPOINT + 'posts/' + id);
   }
 }

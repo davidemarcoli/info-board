@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Category} from "../../../models/category";
 import {CategoryService} from "../../../services/category/category.service";
 import {AlertService} from "../../../services/alert/alert.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-update-category',
@@ -12,24 +13,35 @@ import {AlertService} from "../../../services/alert/alert.service";
 export class UpdateCategoryComponent implements OnInit {
 
   // @ts-ignore
-  form: FormGroup;
+  public form: FormGroup;
+
+  public oldCategory: Category | undefined;
+
+  color = '#f5f5f5';
 
   categoryList: Category[] = [];
 
-  constructor(private categoryService: CategoryService, private alertService: AlertService) {
+
+  constructor(private categoryService: CategoryService, private alertService: AlertService, private router: Router) {
     this.categoryService.getCategories().toPromise().then(value => {
       this.categoryList = value || [];
     })
   }
 
-  onOldCategoryChange(event: any) {
-    console.log(event)
-  }
-
   ngOnInit(): void {
     this.form = new FormGroup({
-      oldCategoryId: new FormControl('', Validators.required),
-      newCategoryName: new FormControl('', Validators.required)
+      oldCategory: new FormControl(undefined, Validators.required),
+      name: new FormControl('', Validators.required)
+    });
+
+    this.form.get('oldCategory')?.valueChanges.subscribe(value => {
+      console.log(value);
+      this.oldCategory = value;
+      this.form.patchValue({
+        name: value.name,
+        color: value.color
+      })
+
     });
   }
 
@@ -37,15 +49,25 @@ export class UpdateCategoryComponent implements OnInit {
     return this.form.get('oldCategoryId');
   }
 
-  get newCategoryName() {
-    return this.form.get('newCategoryName');
+  get name() {
+    return this.form.get('name');
   }
 
-  onSubmit() {
+  getPreviewCategory() {
+    return new Category(0, this.form.value.name, this.color);
+  }
 
-    // @ts-ignore
-    this.categoryService.deleteCategory(this.oldCategoryId.value, this.newCategoryName.value).toPromise().then(value => {
-    })
+  onSubmit(event: any) {
+    this.categoryService.updateCategory(new Category(this.oldCategory?.id, this.form.value.name, this.color)).toPromise()
+      .then(value => {
+        console.log(value)
+        this.alertService.success('Category edited successfully');
+        this.router.navigate(['/']);
+      })
+      .catch(reason => {
+        console.log(reason)
+        this.alertService.error(reason.error.message);
+      });
   }
 
 }
