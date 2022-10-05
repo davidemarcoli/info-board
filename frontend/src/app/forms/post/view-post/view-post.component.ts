@@ -4,6 +4,7 @@ import {PostService} from "../../../services/post/post.service";
 import {Post} from "../../../models/post";
 import {DomSanitizer} from "@angular/platform-browser";
 import {User} from "../../../models/user";
+import * as moment from "moment/moment";
 
 @Component({
   selector: 'app-view-post',
@@ -12,7 +13,7 @@ import {User} from "../../../models/user";
 })
 export class ViewPostComponent implements OnInit {
 
-  post: Post = new Post(0, "", "", [], new User("", "", ""), new Date(), new Date());
+  post: Post = new Post(0, "", "", [], new User("", "", "", ""), new Date(), new Date());
 
   constructor(private route: ActivatedRoute, private postService: PostService, private sanatizer: DomSanitizer) {
     this.route.queryParams.subscribe(params => {
@@ -23,6 +24,10 @@ export class ViewPostComponent implements OnInit {
 
   ngOnInit(): void {
 
+  }
+
+  getRelativeDate(date: Date) {
+    return moment(date).fromNow();
   }
 
   getPostContent() {

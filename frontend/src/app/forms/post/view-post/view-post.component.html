@@ -1,3 +1,15 @@
+<div id="details">
+  List all the post details here
+  <table>
+    <tr>
+      <td>Author</td>
+      <td>{{post.author.username}}</td>
+    </tr>
+    <tr>
+      <td>Created At</td>
+      <td>{{post.createdAt}} ({{getRelativeDate(post.createdAt)}})</td>
+  </table>
+</div>
 <div id="container">
   <h1 id="title">{{post.title}}</h1>
   <div [innerHTML]="getPostContent()"></div>
