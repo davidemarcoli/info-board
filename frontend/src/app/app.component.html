@@ -8,6 +8,7 @@
 <!--  <mat-menu #infoBoardMenu="matMenu">-->
 <!--    <button mat-menu-item routerLink="post/create">Add Post</button>-->
 <!--  </mat-menu>-->
+  <div style="margin-left: 10px"></div>
   <button mat-button [matMenuTriggerFor]="categoryMenu" *ngIf="authService.getRoles().includes('ROLE_ADMIN')">Categories</button>
   <mat-menu #categoryMenu="matMenu">
     <button mat-menu-item routerLink="category/create">Add Category</button>
