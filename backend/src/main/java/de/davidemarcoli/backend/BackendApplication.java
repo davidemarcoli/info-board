@@ -7,7 +7,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+import org.springframework.ui.ModelMap;
 import org.springframework.util.ClassUtils;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -39,4 +42,9 @@ public class BackendApplication {
 ////            }
 ////        };
 //    }
+
+    @GetMapping("/_PATH_SPA")
+    public ModelAndView getIndex(ModelMap model) {
+        return new ModelAndView("forward:/static/index.html", model);
+    }
 }

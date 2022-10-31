@@ -1,36 +1,49 @@
+#container {
+  /*margin: 0 auto;*/
+  width: 100%;
+  padding: 0 20px;
+  flex-direction: row;
+  display: flex;
+  /*align-items: center;*/
+  /*justify-content: center;*/
+  gap: 10%;
+  position: absolute;
+}
+
 #content {
   /*margin: 5vh 5vw;*/
-  width: 90vw;
+  /*width: 80%;*/
   /*centered with flexbox*/
   /*display: flex;*/
   /*flex-direction: column;*/
   /*align-items: center;*/
   /*justify-content: center;*/
-  margin: 5vh auto auto;
+  /*margin: 5vh auto auto;*/
+  margin-top: 5vh;
 }
 
 #title {
-    font-size: 2.5em;
-    font-weight: bold;
-    margin-bottom: 0.5em;
+  font-size: 2.5em;
+  font-weight: bold;
+  margin-bottom: 0.5em;
 }
 
 .metadata {
-    font-size: 1.2em;
-    margin-bottom: 0.5em;
+  font-size: 1.2em;
+  margin-bottom: 0.5em;
 }
 
 .metadata td {
-    padding: 0.5em;
+  padding: 0.5em;
 }
 
 .metadata th {
-    padding: 0.5em;
-    text-align: right;
+  padding: 0.5em;
+  text-align: right;
 }
 
 .metadata tr td:first-child {
-    font-weight: bolder;
+  font-weight: bolder;
 }
 
 #details {
@@ -43,6 +56,9 @@
   border-radius: 5px;
   /*width: fit-content;*/
   /*position: absolute;*/
+  width: 20%;
+  height: fit-content;
+
 }
 
 button[mat-raised-button] {
