@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import * as moment from "moment";
 import {HttpClient} from "@angular/common/http";
 import jwt_decode from "jwt-decode";
+import {AppSettings} from "../../app.settings";
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class AuthService {
   }
 
   async login(username: string, password: string): Promise<any> {
-    return await this.http.post<any>('http://localhost:8081/api/auth/signin', {
+    return await this.http.post<any>(AppSettings.API_ENDPOINT + 'auth/signin', {
       username: username,
       password: password
     }).toPromise().then(value => {
@@ -22,7 +23,7 @@ export class AuthService {
   }
 
   async signup(email: string, username: string, password: string): Promise<any> {
-    return this.http.post<any>('http://localhost:8081/api/auth/signup', {
+    return this.http.post<any>('auth/signup', {
       email: email,
       username: username,
       password: password

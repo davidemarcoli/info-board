@@ -39,6 +39,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log(document.location.protocol + '//' + document.location.hostname + ':8081/api/');
   }
 
 }
