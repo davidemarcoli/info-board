@@ -11,14 +11,14 @@
     </parent>
     <groupId>de.davidemarcoli</groupId>
     <artifactId>backend</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>backend</name>
-    <description>backend</description>
+    <version>1.0-SNAPSHOT</version>
     <properties>
         <java.version>17</java.version>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <frontend-bundle-dir>../frontend/dist/frontend/</frontend-bundle-dir>
+        <start-class>de.davidemarcoli.backend.BackendApplication</start-class>
     </properties>
     <dependencies>
         <dependency>
@@ -83,17 +83,48 @@
     </dependencies>
 
     <build>
+        <finalName>info-board-${project.version}</finalName>
         <plugins>
             <plugin>
+                <!--Plugin to copy the compiled angular code (in general it's in the frontend/dist/frontend folder) from the frontend to the backend-->
+                <artifactId>maven-resources-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-resources</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <!--outputDirectory is the directory where the code should go in the backend-->
+                            <!--By default maven is searching for external code in the /resources, /resources/static or /resources/public folder so it must be there)-->
+                            <outputDirectory>${basedir}/src/main/resources/static</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <!--Thats the path where i get the compiled files from the frontend-->
+                                    <!--Attention you have to copy the files directly where the index.html etc. is and without an folder in between-->
+                                    <directory>../frontend/dist/frontend</directory>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <!--Plugin to set the path to your backend main class-->
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <excludes>
-                        <exclude>
-                            <groupId>org.projectlombok</groupId>
-                            <artifactId>lombok</artifactId>
-                        </exclude>
-                    </excludes>
+                    <mainClass>de.davidemarcoli.backend.BackendApplication</mainClass>
+                </configuration>
+            </plugin>
+            <plugin>
+                <!--Plugin to set your Java SDK-->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>17</source>
+                    <target>17</target>
                 </configuration>
             </plugin>
         </plugins>
