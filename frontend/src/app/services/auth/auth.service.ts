@@ -23,7 +23,7 @@ export class AuthService {
   }
 
   async signup(email: string, username: string, password: string): Promise<any> {
-    return this.http.post<any>('auth/signup', {
+    return this.http.post<any>(AppSettings.API_ENDPOINT + 'auth/signup', {
       email: email,
       username: username,
       password: password
