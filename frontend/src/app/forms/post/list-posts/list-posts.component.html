@@ -9,7 +9,7 @@
   <mat-card class="items" (click)="navigateToPost(record.post.id)" *ngFor="let record of searchedPosts.slice()">
     <h2>{{record.post.title | truncate:20}} </h2>
 <!--    <p>{{record.post.content | truncate:100}} </p>-->
-    <p [innerHTML]="record.post.content | truncate:100"></p>
+    <div [innerHTML]="record.post.content | truncate:100"></div>
     <p>{{getRelativeDate(record.post.createdAt)}} </p>
     <div class="category-container">
       <app-category-pill *ngFor="let category of record.post.categories" [category]="category"></app-category-pill>

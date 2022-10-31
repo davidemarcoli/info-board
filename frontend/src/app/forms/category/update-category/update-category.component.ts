@@ -17,7 +17,7 @@ export class UpdateCategoryComponent implements OnInit {
 
   public oldCategory: Category | undefined;
 
-  color = '#f5f5f5';
+  color = '';
 
   categoryList: Category[] = [];
 
@@ -39,8 +39,8 @@ export class UpdateCategoryComponent implements OnInit {
       this.oldCategory = value;
       this.form.patchValue({
         name: value.name,
-        color: value.color
       })
+      this.color = value.color;
 
     });
   }
