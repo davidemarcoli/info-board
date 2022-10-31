@@ -61,9 +61,9 @@ export class AuthService {
     // console.log(moment().isBefore(this.getExpiration()));
     const isLoggedIn = localStorage.getItem("currentUser") && moment().isBefore(this.getExpiration());
     // if not on login or register page, redirect to login page
-    if (!isLoggedIn && !location.pathname.includes("login") && !location.pathname.includes("register")) {
-      location.href = "/login";
-    }
+    // if (!isLoggedIn && !location.pathname.includes("login") && !location.pathname.includes("register")) {
+    //   location.href = "/login";
+    // }
     return isLoggedIn;
   }
 
