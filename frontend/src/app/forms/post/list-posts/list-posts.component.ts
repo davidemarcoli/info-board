@@ -19,7 +19,7 @@ export class ListPostsComponent implements OnInit {
   constructor(private postService: PostService, private router: Router) {
     this.postService.getPosts().toPromise().then(value => {
       this.allPosts = value || [];
-      this.allPosts.sort((a, b) => {
+      this.allPosts = this.allPosts.sort((a, b) => {
         return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
       });
       console.log("All Posts", this.allPosts)
@@ -115,7 +115,7 @@ export class ListPostsComponent implements OnInit {
       console.log("Content Search Result", contentSearchResult)
 
       titleSearchResult.forEach(value => {
-        if (!this.isAlreadySearched(value.post, newSearchedPosts)) newSearchedPosts.push(value)
+          if (!this.isAlreadySearched(value.post, newSearchedPosts)) newSearchedPosts.push(value)
         }
       )
       categorySearchResult.forEach(value => {

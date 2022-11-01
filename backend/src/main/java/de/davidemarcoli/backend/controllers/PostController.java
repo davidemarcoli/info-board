@@ -5,6 +5,7 @@ import de.davidemarcoli.backend.models.Post;
 import de.davidemarcoli.backend.services.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,6 +31,8 @@ public class PostController implements CrudController<Post, Integer> {
 
     @Override
     @DeleteMapping("/{id}")
+    // preAuthorize: only admin or owner can delete a post
+    @PreAuthorize("hasRole('ADMIN') or @postRepository.findById(#id).get().user.username == authentication.name")
     public ResponseEntity<Void> deleteById(@PathVariable Integer id) {
         postService.deleteById(id);
         return ResponseEntity.ok().build();
