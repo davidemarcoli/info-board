@@ -27,14 +27,10 @@ export class AuthService {
       email: email,
       username: username,
       password: password
-    }).subscribe(value => {
-      console.log("Signup Value", value)
-      this.setSession(value);
-      return value;
-    });
+    }).toPromise();
   }
 
-  private setSession(authResult: any) {
+  public setSession(authResult: any) {
     const decoded: any = jwt_decode(authResult.accessToken) || {};
 
     if (!decoded) return;

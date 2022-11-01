@@ -20,7 +20,8 @@ public class CategoryController implements CrudController<Category, Integer> {
     @Override
     @PostMapping("/")
     public ResponseEntity<Category> create(@RequestBody Category category) {
-        return ResponseEntity.ok(categoryService.save(category));
+//        return ResponseEntity.ok(categoryService.save(category));
+        return ResponseEntity.ok(categoryService.saveWithTransaction(category));
     }
 
     @Override

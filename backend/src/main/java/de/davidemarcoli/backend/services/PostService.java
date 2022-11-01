@@ -7,14 +7,15 @@ import de.davidemarcoli.backend.models.User;
 import de.davidemarcoli.backend.repository.PostRepository;
 import de.davidemarcoli.backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
+@Transactional
 public class PostService implements CrudService<Post, Integer> {
 
     @Autowired

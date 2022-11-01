@@ -8,15 +8,42 @@ import de.davidemarcoli.backend.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityManager;
 import javax.persistence.EntityNotFoundException;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
+@Transactional
 public class CategoryService implements CrudService<Category, Integer> {
 
     @Autowired
     private CategoryRepository categoryRepository;
+
+    @PersistenceContext
+    private EntityManager entityManager;
+
+    public Category saveWithTransaction(Category category) {
+
+        if (categoryRepository.findByName(category.getName()).isPresent()) {
+            throw new EntityAlreadyExistsException("Category " + category.getName() + " already exists");
+        } else if (categoryRepository.existsByColor(category.getColor())) {
+            throw new EntityAlreadyExistsException("Category with color " + category.getColor() + " already exists");
+        }
+
+//        entityManager.createNativeQuery("START TRANSACTION; INSERT INTO category (name, color) VALUES (?,?); COMMIT;")
+//                .setParameter(1, category.getName())
+//                .setParameter(2, category.getColor())
+//                .executeUpdate();
+
+        return categoryRepository.callInsertProcedure(category.getName(), category.getColor());
+
+        // get inserted category
+//        return categoryRepository.findByName(category.getName()).orElseThrow(EntityNotFoundException::new);
+    }
 
     @Override
     public Category save(Category category) {
