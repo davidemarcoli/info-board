@@ -103,6 +103,9 @@ export class ListPostsComponent implements OnInit {
 
       const newSearchedPosts: { post: Post, importance: number }[] = [];
 
+      newSearchedPosts.push(...this.handleSpecialExpression(searchTerm))
+      console.log("Searched Posts after Special Expression", newSearchedPosts)
+
       const titleSearchResult = this.filterPostsByTitle(searchTerm);
       const categorySearchResult = this.filterPostsByCategory(searchTerm);
       const contentSearchResult = this.filterPostsByContent(searchTerm);
@@ -112,7 +115,7 @@ export class ListPostsComponent implements OnInit {
       console.log("Content Search Result", contentSearchResult)
 
       titleSearchResult.forEach(value => {
-          newSearchedPosts.push(value)
+        if (!this.isAlreadySearched(value.post, newSearchedPosts)) newSearchedPosts.push(value)
         }
       )
       categorySearchResult.forEach(value => {
@@ -131,6 +134,20 @@ export class ListPostsComponent implements OnInit {
       this.searchedPosts = this.allPosts.map(value => {
         return {post: value, importance: 3}
       });
+    }
+  }
+
+  handleSpecialExpression(searchTerm: string) {
+    if (searchTerm.startsWith("title:".toUpperCase())) {
+      return this.filterPostsByTitle(searchTerm.replace("title:".toUpperCase(), ""))
+    } else if (searchTerm.startsWith("category:".toUpperCase())) {
+      return this.filterPostsByCategory(searchTerm.replace("category:".toUpperCase(), ""))
+    } else if (searchTerm.startsWith("content:".toUpperCase())) {
+      return this.filterPostsByContent(searchTerm.replace("content:", ""))
+    } else if (searchTerm.startsWith("author:".toUpperCase()) || searchTerm.startsWith("@")) {
+      return this.filterPostsByAuthor(searchTerm.replace("author:".toUpperCase(), "").replace("@", ""))
+    } else {
+      return []
     }
   }
 
@@ -189,6 +206,16 @@ export class ListPostsComponent implements OnInit {
     console.log("All Posts after Trick", this.allPosts)
 
     return newSearchedPosts;
+  }
+
+  filterPostsByAuthor(author: string) {
+    author = author.toUpperCase();
+
+    return this.allPosts.filter(post => {
+      return post.author.username.toUpperCase().includes(author)
+    }).map(value => {
+      return {post: value, importance: 3}
+    });
   }
 
   ngOnInit(): void {
